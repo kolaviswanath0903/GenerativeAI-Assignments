@@ -1,0 +1,104 @@
+**Amazon Search Functionality – Test Scenarios & Test Cases**  
+(8 Scenarios × 10 Test Cases = 80 Test Cases)  
+
+| Sl.No | Test_Scenario_ID | Test_Case_ID | Test_Case_Description | Type_Of_TestCase | Priority | Part_Of_Regression |
+|-------|------------------|--------------|-----------------------|------------------|----------|--------------------|
+| **Scenario 1 – PRODUCT SEARCH – EXACT MATCH** |
+| 1 | TS_AMZ_01 | TS_AMZ_01_TC001 | Search for a known product name “Apple iPhone 14” – exact spelling. Verify product appears at top of results. | Positive | MUST | Yes |
+| 2 | TS_AMZ_01 | TS_AMZ_01_TC002 | Verify product image thumbnail is displayed for the exact‑match result. | Positive | MUST | Yes |
+| 3 | TS_AMZ_01 | TS_AMZ_01_TC003 | Click the product title – ensure navigation to product‑detail page. | Positive | MUST | Yes |
+| 4 | TS_AMZ_01 | TS_AMZ_01_TC004 | Verify the “Add to Cart” button is present on the product‑detail page. | Positive | GOOD | Yes |
+| 5 | TS_AMZ_01 | TS_AMZ_01_TC005 | Verify that the price shown in the result list matches the price on the detail page. | Positive | GOOD | Yes |
+| 6 | TS_AMZ_01 | TS_AMZ_01_TC006 | Confirm that the product rating (★) is displayed alongside the result. | Positive | GOOD | Yes |
+| 7 | TS_AMZ_01 | TS_AMZ_01_TC007 | Perform the exact‑match search on mobile browser – results layout identical to desktop. | Positive | MAY | Yes |
+| 8 | TS_AMZ_01 | TS_AMZ_01_TC008 | Search with leading/trailing spaces “ Apple iPhone 14 ”. Verify still returns exact product. | Negative | MUST | Yes |
+| 9 | TS_AMZ_01 | TS_AMZ_01_TC009 | Search for a non‑existent product “XYZ1234”. Verify “No results found” message appears. | Negative | MUST | Yes |
+| 10 | TS_AMZ_01 | TS_AMZ_01_TC010 | Search with an empty string. Verify system prompts “Enter a search term”. | Negative | MUST | Yes |
+| **Scenario 2 – PRODUCT SEARCH – MISSPELLING** |
+| 11 | TS_AMZ_02 | TS_AMZ_02_TC001 | Search for “Aple iPhone 14” (misspelled “Apple”). Verify that the correct product is suggested in “Did you mean?” and appears in results. | Positive | MUST | Yes |
+| 12 | TS_AMZ_02 | TS_AMZ_02_TC002 | Verify that the product image is shown for the suggested result. | Positive | MUST | Yes |
+| 13 | TS_AMZ_02 | TS_AMZ_02_TC003 | Click the suggested result – ensure navigation to correct product page. | Positive | GOOD | Yes |
+| 14 | TS_AMZ_02 | TS_AMZ_02_TC004 | Verify that the misspelled query is retained in the search box after results load. | Positive | GOOD | Yes |
+| 15 | TS_AMZ_02 | TS_AMZ_02_TC005 | Verify that the price and rating displayed for the suggested item are accurate. | Positive | GOOD | Yes |
+| 16 | TS_AMZ_02 | TS_AMZ_02_TC006 | Search with a common typo “Samsng Galaxy S22”. Verify Samsung product appears. | Positive | GOOD | Yes |
+| 17 | TS_AMZ_02 | TS_AMZ_02_TC007 | Perform misspelling search on the Amazon app – result list identical to web. | Positive | MAY | Yes |
+| 18 | TS_AMZ_02 | TS_AMZ_02_TC008 | Search for a string with only special characters “@@@###”. Verify appropriate error/ no‑result handling. | Negative | MUST | Yes |
+| 19 | TS_AMZ_02 | TS_AMZ_02_TC009 | Search for a completely unrelated word “Banana”. Verify “No results” message (since no product named Banana in electronics). | Negative | MUST | Yes |
+| 20 | TS_AMZ_02 | TS_AMZ_02_TC010 | Search with a misspelling that matches another valid product (e.g., “Nikon D5” typed “Nikon D6”). Verify that the system does **not** incorrectly show D6 if it doesn’t exist. | Negative | MUST | Yes |
+| **Scenario 3 – PRODUCT SEARCH – SIMILAR PRODUCTS** |
+| 21 | TS_AMZ_03 | TS_AMZ_03_TC001 | Search for “wireless headphones”. Verify a list of similar products (different brands) is displayed. | Positive | MUST | Yes |
+| 22 | TS_AMZ_03 | TS_AMZ_03_TC002 | Verify each listed product shows an image thumbnail. | Positive | MUST | Yes |
+| 23 | TS_AMZ_03 | TS_AMZ_03_TC003 | Verify that at least one product has a “Best Seller” badge. | Positive | GOOD | Yes |
+| 24 | TS_AMZ_03 | TS_AMZ_03_TC004 | Verify price range filter (e.g., $50‑$100) can be applied and results stay within range. | Positive | GOOD | Yes |
+| 25 | TS_AMZ_03 | TS_AMZ_03_TC005 | Verify that clicking a product opens its detail page with correct image and description. | Positive | GOOD | Yes |
+| 26 | TS_AMZ_03 | TS_AMZ_03_TC006 | Verify that the “Customers who bought this also bought” carousel appears on the result page. | Positive | GOOD | Yes |
+| 27 | TS_AMZ_03 | TS_AMZ_03_TC007 | Perform the same search on a low‑bandwidth connection – images load with placeholder then lazy‑load. | Positive | MAY | Yes |
+| 28 | TS_AMZ_03 | TS_AMZ_03_TC008 | Search for a category that has no products (e.g., “quantum toaster”). Verify graceful “No results” handling. | Negative | MUST | Yes |
+| 29 | TS_AMZ_03 | TS_AMZ_03_TC009 | Search using a numeric string that does not map to any SKU (e.g., “999999999”). Verify proper error message. | Negative | MUST | Yes |
+| 30 | TS_AMZ_03 | TS_AMZ_03_TC010 | Apply an unsupported filter (e.g., “Color=Purple” for headphones that have no color option). Verify system ignores filter and shows correct results. | Negative | MUST | Yes |
+| **Scenario 4 – PRICE FILTER SEARCH** |
+| 31 | TS_AMZ_04 | TS_AMZ_04_TC001 | Search “laptop” then set price filter $800‑$1200. Verify all displayed laptops fall within the range. | Positive | MUST | Yes |
+| 32 | TS_AMZ_04 | TS_AMZ_04_TC002 | Verify each product thumbnail is displayed after price filter is applied. | Positive | MUST | Yes |
+| 33 | TS_AMZ_04 | TS_AMZ_04_TC003 | Verify that the total result count updates correctly after filter. | Positive | GOOD | Yes |
+| 34 | TS_AMZ_04 | TS_AMZ_04_TC004 | Verify that the “Clear all filters” button resets price range and shows original list. | Positive | GOOD | Yes |
+| 35 | TS_AMZ_04 | TS_AMZ_04_TC005 | Verify that applying a price filter does **not** affect the product rating display. | Positive | GOOD | Yes |
+| 36 | TS_AMZ_04 | TS_AMZ_04_TC006 | Apply overlapping price filters (e.g., $500‑$900 then $800‑$1300). Verify final range is intersection ($800‑$900). | Positive | GOOD | Yes |
+| 37 | TS_AMZ_04 | TS_AMZ_04_TC007 | Perform price filter on the mobile app – UI behaves consistently. | Positive | MAY | Yes |
+| 38 | TS_AMZ_04 | TS_AMZ_04_TC008 | Set price filter with minimum greater than maximum ($1500‑$1000). Verify system shows validation error. | Negative | MUST | Yes |
+| 39 | TS_AMZ_04 | TS_AMZ_04_TC009 | Enter non‑numeric characters in price fields (“abc”). Verify error handling. | Negative | MUST | Yes |
+| 40 | TS_AMZ_04 | TS_AMZ_04_TC010 | Apply a price filter that results in zero products. Verify appropriate “No results” message. | Negative | MUST | Yes |
+| **Scenario 5 – SORT BY NAME (Alphabetical Order)** |
+| 41 | TS_AMZ_05 | TS_AMZ_05_TC001 | After searching “Bluetooth speaker”, select sort “Name: A to Z”. Verify the first item starts with “A”. | Positive | MUST | Yes |
+| 42 | TS_AMZ_05 | TS_AMZ_05_TC002 | Verify that each product image remains visible after sorting. | Positive | MUST | Yes |
+| 43 | TS_AMZ_05 | TS_AMZ_05_TC003 | Verify that the product count does not change after sorting. | Positive | GOOD | Yes |
+| 44 | TS_AMZ_05 | TS_AMZ_05_TC004 | Verify that the sort order persists when navigating to the next page of results. | Positive | GOOD | Yes |
+| 45 | TS_AMZ_05 | TS_AMZ_05_TC005 | Verify that the rating stars stay aligned with each product after sorting. | Positive | GOOD | Yes |
+| 46 | TS_AMZ_05 | TS_AMZ_05_TC006 | Verify that selecting “Name: Z to A” reverses the order correctly. | Positive | GOOD | Yes |
+| 47 | TS_AMZ_05 | TS_AMZ_05_TC007 | Perform the same sort on the Amazon app – UI behaves identically. | Positive | MAY | Yes |
+| 48 | TS_AMZ_05 | TS_AMZ_05_TC008 | Attempt to sort when no results are displayed (e.g., after impossible filter). Verify system disables sort control. | Negative | MUST | Yes |
+| 49 | TS_AMZ_05 | TS_AMZ_05_TC009 | Select an unsupported sort option (e.g., “Name: Random”). Verify graceful fallback to default sorting. | Negative | MUST | Yes |
+| 50 | TS_AMZ_05 | TS_AMZ_05_TC010 | Rapidly change sort options multiple times – verify UI does not crash and final order matches last selection. | Negative | MUST | Yes |
+| **Scenario 6 – SORT BY PRICE (Ascending)** |
+| 51 | TS_AMZ_06 | TS_AMZ_06_TC001 | Search “gaming mouse”, sort by “Price: Low to High”. Verify the first product has the lowest price. | Positive | MUST | Yes |
+| 52 | TS_AMZ_06 | TS_AMZ_06_TC002 | Verify product images are displayed after sorting. | Positive | MUST | Yes |
+| 53 | TS_AMZ_06 | TS_AMZ_06_TC003 | Verify that price displayed on each tile matches the detail page price. | Positive | GOOD | Yes |
+| 54 | TS_AMZ_06 | TS_AMZ_06_TC004 | Verify that the number of results stays constant after sort. | Positive | GOOD | Yes |
+| 55 | TS_AMZ_06 | TS_AMZ_06_TC005 | Verify that the “Free Shipping” badge remains visible where applicable after sort. | Positive | GOOD | Yes |
+| 56 | TS_AMZ_06 | TS_AMZ_06_TC006 | Verify that sorting by price respects any active price‑range filter (i.e., still within filter). | Positive | GOOD | Yes |
+| 57 | TS_AMZ_06 | TS_AMZ_06_TC007 |",
+                "reasoning": "The user wants a table of 8 Test Scenarios, each with at least 10 Test Cases (total 8*10=80 test cases). Each test scenario should have 7 positive and 3 negative test cases. They want columns: Sl.No, Test_Scenario_ID, Test_Case_ID, Test_Case_Description, Type_Of_TestCase (positive / negative), Priority (MUST/GOOD/MAY), Part_Of_Regression (Yes/No). Also need to follow naming conventions: Test Scenario ID start with TS_AMZ_seqno (seqno presumably 01,02...). Test Case ID start with Test Scenario ID + _TC001 etc. Provide test scenarios based on product search, price search, sort display by name alphabetical order, and price ascending/descending. Include exact match, misspelling, similar products. Also ratings and out of stocks. Also image display must.
+
+We need to produce a comprehensive list. That's a lot of rows. We could produce a condensed format maybe but must include all columns.
+
+We'll create 8 scenarios:
+
+1. TS_AMZ_01 - Product Search - Exact Match
+2. TS_AMZ_02 - Product Search - Misspelling
+3. TS_AMZ_03 - Product Search - Similar Products
+4. TS_AMZ_04 - Price Filter Search
+5. TS_AMZ_05 - Sort by Name Alphabetical
+6. TS_AMZ_06 - Sort by Price Ascending
+7. TS_AMZ_07 - Sort by Price Descending
+8. TS_AMZ_08 - Ratings & Stock Availability
+
+Each with 10 test cases: 7 positive, 3 negative.
+
+We need to include image display verification as part of positive cases.
+
+We'll assign priority maybe MUST for critical, GOOD for secondary, MAY for lower.
+
+Part of regression: Yes for most.
+
+We'll produce a table. Possibly separate tables per scenario for readability.
+
+We must ensure test case IDs: TS_AMZ_01_TC001 etc.
+
+Let's generate.
+
+We'll include Sl.No across entire document or per scenario? Probably overall numbering.
+
+We'll produce sequential Sl.No 1-80.
+
+We'll produce test cases description.
+
+Ok produce final answer.
